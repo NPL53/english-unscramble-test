@@ -1,4 +1,4 @@
-ENGLISH_UNSCRAMBLE-TEST
+ENGLISH-UNSCRAMBLE-TEST
 =======================
 
 
@@ -8,24 +8,35 @@ ENGLISH_UNSCRAMBLE-TEST
 ### 테스트 파일 작성
 
 프로그램을 사용하기 위해 테스트 파일이 필요합니다.
-테스트 파일은 json파일이며
+테스트 파일은 json형식으로 작성합니다.
 
+시험 정보는 이렇게 작성합니다.
 ```json
-[
-  {
+{
     "name": "any_name",
     "sentences": [
-      {
-        "sentence": "any sentence",
-        "korean": "어떤 문장"
-      },
-      ...
+        {
+            "sentence": "any sentence",
+            "korean": "어떤 문장"
+        }
     ]
-  },
-  ...
-]
+}
+
 ```
-와 같이 시험에 나올 문장을 작성해 사용할 수 있습니다.
+name 은 시험 이름이고, sentences 는 문장 정보 배열입니다.
+
+sentences 배열 안의 문장 정보는 아래와 같이 작성합니다.
+```json
+{
+    "sentence": "any sentence",
+    "korean": "어떤 문장"
+}
+```
+sentence 는 영어 문장이고, korean은 그 문장의 뜻입니다.
+
+테스트 파일은 시험 정보의 배열로 되어있으며, 시험의 이름을 다르게 해서 여러 시험 정보를 저장할 수 있습니다.
+
+example 디렉터리에 있는 예제 파일을 확인하세요.
 
 ### 프로그램 실행
 
