@@ -1,0 +1,15 @@
+[
+  {
+    "name": "any_name",
+    "sentences": [
+      {
+        "sentence": "any sentence",
+        "korean": "어떤 문장"
+      },
+      {
+        "sentence": "I have a cute cat.",
+        "korean": "저한테 귀여운 고양이가 있습니다."
+      }
+    ]
+  }
+]
