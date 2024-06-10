@@ -15,6 +15,8 @@ def main():
     argument_parser.add_argument("testname", type=str, help="테스트 이름을 입력하세요.")
     argument_parser.add_argument(
         "--keep-order", dest="keep_order", action="store_true", help="문제 순서를 파일의 순서로 고정합니다.")
+    argument_parser.add_argument(
+        "--disable-hint", dest="disable_hint", action="store_true", help="문장의 단어 보기를 비활성화합니다.")
     namespace = argument_parser.parse_args()
 
     @dataclasses.dataclass
@@ -56,10 +58,11 @@ def main():
                 print("입력할 수 있는 단어를 찾지 못했으므로 건너뛰었습니다.")
                 continue
 
-            shuffled_words = words.copy()
-            random.shuffle(shuffled_words)
-            print("문제: %s\n%s" %
-                  (sentence_test_.korean, ' / '.join(shuffled_words)))
+            print("문제: %s" % sentence_test_.korean)
+            if not namespace.disable_hint:
+                shuffled_words = words.copy()
+                random.shuffle(shuffled_words)
+                print(' / '.join(shuffled_words))
             answer = input("정답을 입력하세요: ")
 
             compared_answer = re.sub(space_pattern, ' ', answer.strip())
