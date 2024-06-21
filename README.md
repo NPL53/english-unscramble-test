@@ -64,7 +64,8 @@ python english-unscramble-test.py example/example1.json any_name
 문장 부호와 대소문자가 모두 일치해야 합니다.
 
 ### 프로그램 인수
-- <b>--keep-order</b>: 문제의 순서를 테스트 파일의 순서로 고정합니다.
+- **--keep-order**: 문제의 순서를 테스트 파일의 순서로 고정합니다.
+- **--disable-hint**: 문제에서 단어 보기를 비활성화합니다.
 
 라이브러리
 ------------
