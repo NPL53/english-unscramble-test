@@ -50,7 +50,8 @@ def main():
 
         checked_tests: List[sentence_test] = []
         space_pattern = re.compile('\\s+')
-        for sentence_test_ in sentence_tests:
+        for index, sentence_test_ in enumerate(sentence_tests):
+            test_number = index + 1
             words = [w for w in sentence_test_.sentence.split(
                 ' ') if len(w) != 0 and not w.isspace()]
 
@@ -58,7 +59,7 @@ def main():
                 print("입력할 수 있는 단어를 찾지 못했으므로 건너뛰었습니다.")
                 continue
 
-            print("문제: %s" % sentence_test_.korean)
+            print("%d. %s" % (test_number, sentence_test_.korean))
             if not namespace.disable_hint:
                 shuffled_words = words.copy()
                 random.shuffle(shuffled_words)
