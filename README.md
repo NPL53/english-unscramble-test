@@ -58,6 +58,13 @@ python english-unscramble-test.py example/example1.json any_name
 
 <image src="image/result.png">
 
+### 테스트 파일 공백 처리
+프로그램은 문장 정보를 읽어들일때
+sentence 와 korean 의 앞, 뒤 공백을 제거하고
+단어 사이의 공백을 띄어쓰기 1개로 바꾼 뒤 시험 문제로 사용합니다.
+
+sentence 또는 korean 이 빈 문자열이거나 공백 문자열이라면 무시됩니다.
+
 ### 정답 판정
 프로그램은 사용자가 입력한 답의 앞, 뒤 공백을 제거하고 단어 사이의 공백을 띄어쓰기 1개로 바꾼 후 테스트 파일의 문장과 같은지 비교합니다.
 

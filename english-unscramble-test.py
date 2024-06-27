@@ -40,27 +40,37 @@ def main():
         raise Exception("대상 테스트 이름이 중복되거나 없습니다.")
     else:
         target = found[0]
-        sentence_tests = target.sentences
+
+        space_pattern = re.compile('\\s+')
+
+        sentence_tests: List[sentence_test] = []
+        ignored_count = 0
+
+        for test in target.sentences:
+            if (len(test.sentence) == 0 or test.sentence.isspace()) \
+                or (len(test.korean) == 0 or test.korean.isspace()):
+                ignored_count += 1
+            else:
+                test.sentence = re.sub(space_pattern, ' ', test.sentence.strip())
+                test.korean = re.sub(space_pattern, ' ', test.korean.strip())
+                sentence_tests.append(test)
 
         if not namespace.keep_order:
             random.shuffle(sentence_tests)
 
-        test_count = len(target.sentences)
+        test_count = len(sentence_tests)
         print("%d개의 문장을 읽었습니다." % test_count)
 
+        if ignored_count > 0:
+            print("(%d개의 문장이 비어있어 무시되었습니다.)"%ignored_count)
+
         checked_tests: List[sentence_test] = []
-        space_pattern = re.compile('\\s+')
         for index, sentence_test_ in enumerate(sentence_tests):
             test_number = index + 1
-            words = [w for w in sentence_test_.sentence.split(
-                ' ') if len(w) != 0 and not w.isspace()]
-
-            if len(words) == 0:
-                print("입력할 수 있는 단어를 찾지 못했으므로 건너뛰었습니다.")
-                continue
 
             print("%d. %s" % (test_number, sentence_test_.korean))
             if not namespace.disable_hint:
+                words = sentence_test_.sentence.split(' ')
                 shuffled_words = words.copy()
                 random.shuffle(shuffled_words)
                 print(' / '.join(shuffled_words))
